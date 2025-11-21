@@ -57,7 +57,7 @@ BR2_ENABLE_LTO=y
 # Filesystem - ext4 ramdisk for FIT image packaging
 BR2_TARGET_ROOTFS_EXT2=y
 BR2_TARGET_ROOTFS_EXT2_4=y
-BR2_TARGET_ROOTFS_EXT2_SIZE="32M"
+BR2_TARGET_ROOTFS_EXT2_SIZE="64M"
 
 # Essential packages only
 BR2_PACKAGE_BUSYBOX=y
