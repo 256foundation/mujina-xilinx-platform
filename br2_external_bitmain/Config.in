@@ -1,0 +1,2 @@
+# Mujina Xilinx Platform Custom Packages Menu
+source "$BR2_EXTERNAL_XILINX_BITMAIN_PATH/packages/mujina/Config.in"

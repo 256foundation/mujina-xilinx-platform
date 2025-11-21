@@ -1,0 +1,85 @@
+#!/bin/sh
+#
+# Config Partition Setup
+#
+# Mounts persistent /config partition (mtd2 UBIFS) and sets MAC address
+# Mirrors stock S37bitmainer_setup and S38network functionality
+# Runs before S40network to ensure config and MAC are ready
+#
+
+start() {
+    printf "Mounting /config and setting MAC address: "
+
+    # Create mount point
+    mkdir -p /config
+
+    # Mount config partition (mtd2 - "configs")
+    if ! grep -q "/config" /proc/mounts 2>/dev/null; then
+        # Attach UBI device to mtd2 (matches stock firmware S37bitmainer_setup)
+        ubiattach /dev/ubi_ctrl -m 2 -b 2 -d 0 > /dev/null 2>&1
+
+        # Check if volume exists
+        if [ -c /dev/ubi0_0 ]; then
+            # Volume exists, mount it
+            mount -t ubifs /dev/ubi0_0 /config > /dev/null 2>&1
+        else
+            # Create volume if it doesn't exist
+            ubimkvol /dev/ubi0 -m -N config_data > /dev/null 2>&1
+            mount -t ubifs /dev/ubi0_0 /config > /dev/null 2>&1
+        fi
+
+        if ! grep -q "/config" /proc/mounts 2>/dev/null; then
+            echo "WARN: Failed to mount /config"
+        fi
+    fi
+
+    # Get MAC address
+    if [ -f /config/mac ]; then
+        # Read existing MAC from config
+        mac=$(cat /config/mac | grep -o "[a-f0-9A-F]\([a-f0-9A-F]\:[a-f0-9A-F]\)\{5\}[a-f0-9A-F]")
+    fi
+
+    # Generate MAC if not found
+    if [ -z "$mac" ] && [ -x /usr/bin/id2mac ]; then
+        mac=$(/usr/bin/id2mac)
+        # Save to config for next boot
+        if [ -n "$mac" ] && grep -q "/config" /proc/mounts 2>/dev/null; then
+            echo "$mac" > /config/mac 2>/dev/null
+            sync
+        fi
+    fi
+
+    # Set MAC address on eth0
+    if [ -n "$mac" ]; then
+        ifconfig eth0 down > /dev/null 2>&1
+        ifconfig eth0 hw ether "$mac" > /dev/null 2>&1
+        ifconfig eth0 up > /dev/null 2>&1
+        echo "OK ($mac)"
+    else
+        echo "WARN: Using default MAC"
+    fi
+}
+
+stop() {
+    # Keep /config mounted (matches stock firmware behavior)
+    # UBIFS handles journaling, safe to keep mounted
+    :
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    restart|reload)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+esac
+
+exit 0

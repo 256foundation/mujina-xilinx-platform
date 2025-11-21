@@ -1,0 +1,379 @@
+Xilinx First Stage Boot Loader
+
+Release 2017.1	Apr 11 2020-21:03:30
+Devcfg driver initialized
+Silicon Version 3.1
+Boot mode is NAND
+InitNand: Geometry = 0x8
+Nand driver initialized
+
+NAND Init Done
+Flash Base Address: 0xE1000000
+Reboot status register: 0x60480000
+Multiboot Register: 0x0000C000
+Image Start Address: 0x00000000
+Partition Header Offset:0x00000C80
+Partition Count: 3
+EfusePS status bits : 0xC0013C8D
+
+EfusePS status bits : Write protect enabled
+
+EfusePS status bits : RSA authentication of fsbl enabled
+
+EfusePS status bits : 128k CRC check on ROM enabled
+
+EfusePS status bits : DFT JTAG is enabled
+
+EfusePS status bits : DFT mode is enabled
+
+Read RSA Key Hash:
+
+3545B6DE1FF44EE4295270CC6D0FF730F861DB9CE32F70F2980619FAF0F34DC1
+
+fsbl read PS efuse success
+RSA is already enabled for Chip
+SetPpk
+Partition Number: 1
+Header Dump
+Image Word Len: 0x0007F2E8
+Data Word Len: 0x0007F2E8
+Partition Word Len:0x0007F4A0
+Load Addr: 0x00000000
+Exec Addr: 0x00000000
+Partition Start: 0x00008780
+Partition Attr: 0x00008020
+Partition Checksum Offset: 0x00000000
+Section Count: 0x00000001
+Checksum: 0xFFDEA12E
+Bitstream
+RSA Signed
+In FsblHookBeforeBitstreamDload function
+Authentication Done
+PCAP:StatusReg = 0x40000A30
+PCAP:device ready
+PCAP:Clear done
+Level Shifter Value = 0xA
+Devcfg Status register = 0x40000A30
+PCAP:Fabric is Initialized done
+PCAP register dump:
+PCAP CTRL 0xF8007000: 0x4C00E07F
+PCAP LOCK 0xF8007004: 0x0000001A
+PCAP CONFIG 0xF8007008: 0x00000508
+PCAP ISR 0xF800700C: 0x0802000B
+PCAP IMR 0xF8007010: 0xFFFFFFFF
+PCAP STATUS 0xF8007014: 0x50000F30
+PCAP DMA SRC ADDR 0xF8007018: 0x00100001
+PCAP DMA DEST ADDR 0xF800701C: 0xFFFFFFFF
+PCAP DMA SRC LEN 0xF8007020: 0x0007F2E8
+PCAP DMA DEST LEN 0xF8007024: 0x0007F2E8
+PCAP ROM SHADOW CTRL 0xF8007028: 0xFFFFFFFF
+PCAP MBOOT 0xF800702C: 0x0000C000
+PCAP SW ID 0xF8007030: 0x00000000
+PCAP UNLOCK 0xF8007034: 0x757BDF0D
+PCAP MCTRL 0xF8007080: 0x3C800100
+
+
+DMA Done !
+
+
+FPGA Done !
+
+In FsblHookAfterBitstreamDload function
+Partition Number: 2
+Header Dump
+Image Word Len: 0x000224F7
+Data Word Len: 0x000224F7
+Partition Word Len:0x000226B0
+Load Addr: 0x04000000
+Exec Addr: 0x04000000
+Partition Start: 0x00087C20
+Partition Attr: 0x00008010
+Partition Checksum Offset: 0x00000000
+Section Count: 0x00000001
+Checksum: 0xF7E5EFB0
+Application
+RSA Signed
+Authentication Done
+Handoff Address: 0x04000000
+In FsblHookBeforeHandoff function
+SUCCESSFUL_HANDOFF
+FSBL Status = 0x1
+
+
+U-Boot 2016.07-gdb5d44e-dirty (Apr 26 2020 - 13:27:15 +0800)
+
+Model: Zynq MicroZED Board
+Board: Xilinx Zynq
+DRAM:
+dram_init: sys_sdram_size = 0x10000000
+dram_init: sys_sdram_size = 256 MB
+dram_init: gd->ram_size = 0xf000000
+ECC disabled 240 MiB
+NAND:  256 MiB
+MMC:   sdhci@e0100000: 0
+Invalid bus 0 (err=-1)
+*** Warning - spi_flash_probe() failed, using default environment
+
+In:    serial@e0000000
+Out:   serial@e0000000
+Err:   serial@e0000000
+Model: Zynq MicroZED Board
+Board: Xilinx Zynq
+board_late_init: bootargs: mem=240M console=ttyPS0,115200 ramdisk_size=33554432 root=/dev/ram rw earlyprintk
+--- nand boot nand ---
+
+Checksum algorithm: sha256
+
+CRL rsa verify success!!!!!
+
+Checksum algorithm: sha256
+
+MINER BTM rsa verify success!!!!!
+
+Net:   --- phy_broadcom_init
+ZYNQ GEM: e000b000, phyaddr 0, interface gmii
+--- zynq_gem_probe
+--- mdio_register
+--- mdio_register 1
+--- mdio_register 2
+--- mdio_register 3
+--- zynq_phy_init: interface = 1
+--- zynq_phy_init
+ 0000000000
+PHY is not detected
+GEM PHY init failed
+No ethernet found.
+Hit any key to stop autoboot:  0
+Copying Linux from NAND flash to RAM...
+
+NAND read: device 0 offset 0x2000000, size 0x800000
+
+NAND read: device 0 offset 0x1a00000, size 0x20000
+Copying ramdisk...
+
+NAND read: device 0 offset 0x2800000, size 0x2000000
+## Booting kernel from Legacy Image at 02000000 ...
+   Image Name:   Linux-4.6.0-xilinx-g03c746f7
+   Image Type:   ARM Linux Kernel Image (uncompressed)
+   Data Size:    4057256 Bytes = 3.9 MiB
+   Load Address: 00008000
+   Entry Point:  00008000
+   Verifying Checksum ... OK
+kernel_addr = 0x2000000
+kernel_len = 4057320 Bytes
+Checksum algorithm: sha256
+
+KERNEL rsa verify success!!!!!
+
+## Loading ramdisk from FIT Image at 04000000 ...
+   Using 'def-conf' configuration
+   Trying 'ramdisk' ramdisk subimage
+     Description:  HashSource Custom Ramdisk
+     Type:         RAMDisk Image
+     Compression:  gzip compressed
+     Data Start:   0x040000d4
+     Data Size:    6071484 Bytes = 5.8 MiB
+     Architecture: ARM
+     OS:           Linux
+     Load Address: 0x00000000
+     Entry Point:  0x00000000
+   Verifying Hash Integrity ... OK
+fdt_len = 8014 Bytes
+Checksum algorithm: sha256
+
+FDT rsa verify success!!!!!
+
+## Flattened Device Tree blob at 03000000
+   Booting using the fdt blob at 0x3000000
+   Loading Kernel Image ... OK
+   Loading Ramdisk to 0d52f000, end 0daf94bc ... OK
+   Loading Device Tree to 0d52a000, end 0d52ef4d ... OK
+
+Starting kernel ...
+
+Booting Linux on physical CPU 0x0
+Linux version 4.6.0-xilinx-g03c746f7 (jenkins@nomd-nomd-fwc-bj) (gcc version 7.2.1 20171011 (Linaro GCC 7.2-2017.11) ) #1 SMP PREEMPT Mon Nov 15 20:28:03 CST 2021
+CPU: ARMv7 Processor [413fc090] revision 0 (ARMv7), cr=18c5387d
+CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+Machine model: Xilinx Zynq
+cma: Reserved 16 MiB at 0x0e000000
+Memory policy: Data cache writealloc
+percpu: Embedded 12 pages/cpu @cddf0000 s19916 r8192 d21044 u49152
+Built 1 zonelists in Zone order, mobility grouping on.  Total pages: 60960
+Kernel command line: mem=240M console=ttyPS0,115200 ramdisk_size=33554432 root=/dev/ram rw earlyprintk
+PID hash table entries: 1024 (order: 0, 4096 bytes)
+Dentry cache hash table entries: 32768 (order: 5, 131072 bytes)
+Inode-cache hash table entries: 16384 (order: 4, 65536 bytes)
+Memory: 210372K/245760K available (6317K kernel code, 243K rwdata, 1932K rodata, 1024K init, 232K bss, 19004K reserved, 16384K cma-reserved, 0K highmem)
+Virtual kernel memory layout:
+    vector  : 0xffff0000 - 0xffff1000   (   4 kB)
+    fixmap  : 0xffc00000 - 0xfff00000   (3072 kB)
+    vmalloc : 0xcf800000 - 0xff800000   ( 768 MB)
+    lowmem  : 0xc0000000 - 0xcf000000   ( 240 MB)
+    pkmap   : 0xbfe00000 - 0xc0000000   (   2 MB)
+    modules : 0xbf000000 - 0xbfe00000   (  14 MB)
+      .text : 0xc0008000 - 0xc090e410   (9242 kB)
+      .init : 0xc0a00000 - 0xc0b00000   (1024 kB)
+      .data : 0xc0b00000 - 0xc0b3cda0   ( 244 kB)
+       .bss : 0xc0b3cda0 - 0xc0b77024   ( 233 kB)
+Preemptible hierarchical RCU implementation.
+	Build-time adjustment of leaf fanout to 32.
+	RCU restricting CPUs from NR_CPUS=4 to nr_cpu_ids=2.
+RCU: Adjusting geometry for rcu_fanout_leaf=32, nr_cpu_ids=2
+NR_IRQS:16 nr_irqs:16 16
+efuse mapped to cf800000
+ps7-slcr mapped to cf802000
+L2C: platform modifies aux control register: 0x72360000 -> 0x72760000
+L2C: DT/platform modifies aux control register: 0x72360000 -> 0x72760000
+L2C-310 erratum 769419 enabled
+L2C-310 enabling early BRESP for Cortex-A9
+L2C-310 full line of zeros enabled for Cortex-A9
+L2C-310 ID prefetch enabled, offset 1 lines
+L2C-310 dynamic clock gating enabled, standby mode enabled
+L2C-310 cache controller enabled, 8 ways, 512 kB
+L2C-310: CACHE_ID 0x410000c8, AUX_CTRL 0x76760001
+zynq_clock_init: clkc starts at cf802100
+Zynq clock init
+sched_clock: 64 bits at 333MHz, resolution 3ns, wraps every 4398046511103ns
+clocksource: arm_global_timer: mask: 0xffffffffffffffff max_cycles: 0x4ce07af025, max_idle_ns: 440795209040 ns
+Switching to timer-based delay loop, resolution 3ns
+clocksource: ttc_clocksource: mask: 0xffff max_cycles: 0xffff, max_idle_ns: 537538477 ns
+ps7-ttc #0 at cf80a000, irq=18
+Console: colour dummy device 80x30
+Calibrating delay loop (skipped), value calculated using timer frequency.. 666.66 BogoMIPS (lpj=3333333)
+pid_max: default: 32768 minimum: 301
+Mount-cache hash table entries: 1024 (order: 0, 4096 bytes)
+Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes)
+CPU: Testing write buffer coherency: ok
+CPU0: thread -1, cpu 0, socket 0, mpidr 80000000
+Setting up static identity map for 0x100000 - 0x100058
+CPU1: failed to boot: -1
+Brought up 1 CPUs
+SMP: Total of 1 processors activated (666.66 BogoMIPS).
+CPU: All CPU(s) started in SVC mode.
+devtmpfs: initialized
+VFP support v0.3: implementor 41 architecture 3 part 30 variant 9 rev 4
+clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+pinctrl core: initialized pinctrl subsystem
+NET: Registered protocol family 16
+DMA: preallocated 256 KiB pool for atomic coherent allocations
+cpuidle: using governor menu
+hw-breakpoint: found 5 (+1 reserved) breakpoint and 1 watchpoint registers.
+hw-breakpoint: maximum watchpoint size is 4 bytes.
+zynq-ocm f800c000.ps7-ocmc: ZYNQ OCM pool: 256 KiB @ 0xcf880000
+vgaarb: loaded
+SCSI subsystem initialized
+usbcore: registered new interface driver usbfs
+usbcore: registered new interface driver hub
+usbcore: registered new device driver usb
+media: Linux media interface: v0.10
+Linux video capture interface: v2.00
+pps_core: LinuxPPS API ver. 1 registered
+pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+PTP clock support registered
+EDAC MC: Ver: 3.0.0
+Advanced Linux Sound Architecture Driver Initialized.
+clocksource: Switched to clocksource arm_global_timer
+NET: Registered protocol family 2
+TCP established hash table entries: 2048 (order: 1, 8192 bytes)
+TCP bind hash table entries: 2048 (order: 2, 16384 bytes)
+TCP: Hash tables configured (established 2048 bind 2048)
+UDP hash table entries: 256 (order: 1, 8192 bytes)
+UDP-Lite hash table entries: 256 (order: 1, 8192 bytes)
+NET: Registered protocol family 1
+RPC: Registered named UNIX socket transport module.
+RPC: Registered udp transport module.
+RPC: Registered tcp transport module.
+RPC: Registered tcp NFSv4.1 backchannel transport module.
+Trying to unpack rootfs image as initramfs...
+rootfs image is not initramfs (no cpio magic); looks like an initrd
+Freeing initrd memory: 5932K (cd52f000 - cdafa000)
+hw perfevents: enabled with armv7_cortex_a9 PMU driver, 7 counters available
+futex hash table entries: 512 (order: 3, 32768 bytes)
+workingset: timestamp_bits=28 max_order=16 bucket_order=0
+jffs2: version 2.2. (NAND) (SUMMARY)  © 2001-2006 Red Hat, Inc.
+io scheduler noop registered
+io scheduler deadline registered
+io scheduler cfq registered (default)
+dma-pl330 f8003000.ps7-dma: Loaded driver for PL330 DMAC-241330
+dma-pl330 f8003000.ps7-dma: 	DBUFF-128x8bytes Num_Chans-8 Num_Peri-4 Num_Events-16
+e0000000.serial: ttyPS0 at MMIO 0xe0000000 (irq = 159, base_baud = 6249999) is a xuartps
+console [ttyPS0] enabled
+xdevcfg f8007000.ps7-dev-cfg: ioremap 0xf8007000 to cf86e000
+[drm] Initialized drm 1.1.0 20060810
+brd: module loaded
+loop: module loaded
+CAN device driver interface
+gpiod_set_value: invalid GPIO
+libphy: MACB_mii_bus: probed
+macb e000b000.ethernet eth0: Cadence GEM rev 0x00020118 at 0xe000b000 irq 31 (00:0a:35:00:00:00)
+Generic PHY e000b000.etherne:00: attached PHY driver [Generic PHY] (mii_bus:phy_addr=e000b000.etherne:00, irq=-1)
+e1000e: Intel(R) PRO/1000 Network Driver - 3.2.6-k
+e1000e: Copyright(c) 1999 - 2015 Intel Corporation.
+ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+ehci-pci: EHCI PCI platform driver
+usbcore: registered new interface driver usb-storage
+mousedev: PS/2 mouse device common for all mice
+i2c /dev entries driver
+cdns-i2c e0005000.ps7_i2c: 100 kHz mmio e0005000 irq 154
+Xilinx Zynq CpuIdle Driver started
+sdhci: Secure Digital Host Controller Interface driver
+sdhci: Copyright(c) Pierre Ossman
+sdhci-pltfm: SDHCI platform and OF driver helper
+mmc0: SDHCI controller on e0100000.ps7-sdio [e0100000.ps7-sdio] using ADMA
+ledtrig-cpu: registered to indicate activity on CPUs
+usbcore: registered new interface driver usbhid
+usbhid: USB HID core driver
+nand: disable subpage write
+nand: device found, Manufacturer ID: 0x2c, Chip ID: 0xda
+nand: Micron MT29F2G08ABAEAWP
+nand: 256 MiB, SLC, erase size: 128 KiB, page size: 2048, OOB size: 64
+nand: NAND_ECC_HW
+nand: NAND_ECC_HW_SYNDROME
+mtd->writesize = 2048
+ecc->strength = 1
+ecc->size = 2048
+mtd->writesize = 2048
+chip->ecc_strength_ds = 4
+chip->ecc_step_ds = 512
+nand: WARNING: pl35x-nand: the ECC used on your system is too weak compared to the one required by the NAND chip
+Bad block table found at page 131008, version 0x01
+Bad block table found at page 130944, version 0x01
+8 ofpart partitions found on MTD device pl35x-nand
+Creating 8 MTD partitions on "pl35x-nand":
+0x000000000000-0x000002800000 : "BOOT.bin-dts-marker-kernel"
+0x000002800000-0x000004800000 : "ramfs"
+0x000004800000-0x000005000000 : "configs"
+0x000005000000-0x000005200000 : "sig"
+0x000005200000-0x000006000000 : "reserve1"
+0x000006000000-0x000007000000 : "upgrade-ramfs"
+0x000007000000-0x00000a800000 : "upgrade-file"
+0x00000a800000-0x000010000000 : "reserve2"
+nf_conntrack version 0.5.0 (3635 buckets, 14540 max)
+ip_tables: (C) 2000-2006 Netfilter Core Team
+NET: Registered protocol family 10
+ip6_tables: (C) 2000-2006 Netfilter Core Team
+sit: IPv6 over IPv4 tunneling driver
+NET: Registered protocol family 17
+can: controller area network core (rev 20120528 abi 9)
+NET: Registered protocol family 29
+can: raw protocol (rev 20120528)
+can: broadcast manager protocol (rev 20120528 t)
+can: netlink gateway (rev 20130117) max_hops=1
+zynq_pm_ioremap: no compatible node found for 'xlnx,zynq-ddrc-a05'
+zynq_pm_late_init: Unable to map DDRC IO memory.
+Registering SWP/SWPB emulation handler
+hctosys: unable to open rtc device (rtc0)
+ALSA device list:
+  No soundcards found.
+RAMDISK: gzip image found at block 0
+EXT4-fs (ram0): couldn't mount as ext3 due to feature incompatibilities
+EXT4-fs (ram0): mounted filesystem with ordered data mode. Opts: (null)
+VFS: Mounted root (ext4 filesystem) on device 1:0.
+devtmpfs: mounted
+Freeing unused kernel memory: 1024K (c0a00000 - c0b00000)
+/sbin/init: error while loading shared libraries: libm.so.6: cannot stat shared object: Error 38
+Kernel panic - not syncing: Attempted to kill init! exitcode=0x00007f00
+
+��j�*���Z�ɹ���������jr�с�幍����
+Eѕ��ѕ�����Z����J��х*�э�����������2��j�� 

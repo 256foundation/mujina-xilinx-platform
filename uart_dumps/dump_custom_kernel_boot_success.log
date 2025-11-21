@@ -1,0 +1,380 @@
+Xilinx First Stage Boot Loader
+
+Release 2017.1	Apr 11 2020-21:03:30
+Devcfg driver initialized
+Silicon Version 3.1
+Boot mode is NAND
+InitNand: Geometry = 0x8
+Nand driver initialized
+
+NAND Init Done
+Flash Base Address: 0xE1000000
+Reboot status register: 0x60400000
+Multiboot Register: 0x0000C000
+Image Start Address: 0x00000000
+Partition Header Offset:0x00000C80
+Partition Count: 3
+EfusePS status bits : 0xC0013C82
+
+EfusePS status bits : Write protect enabled
+
+EfusePS status bits : RSA authentication of fsbl enabled
+
+EfusePS status bits : 128k CRC check on ROM enabled
+
+EfusePS status bits : DFT JTAG is enabled
+
+EfusePS status bits : DFT mode is enabled
+
+Read RSA Key Hash:
+
+3545B6DE1FF44EE4295270CC6D0FF730F861DB9CE32F70F2980619FAF0F34DC1
+
+fsbl read PS efuse success
+RSA is already enabled for Chip
+SetPpk
+Partition Number: 1
+Header Dump
+Image Word Len: 0x0007F2E8
+Data Word Len: 0x0007F2E8
+Partition Word Len:0x0007F4A0
+Load Addr: 0x00000000
+Exec Addr: 0x00000000
+Partition Start: 0x00008780
+Partition Attr: 0x00008020
+Partition Checksum Offset: 0x00000000
+Section Count: 0x00000001
+Checksum: 0xFFDEA12E
+Bitstream
+RSA Signed
+In FsblHookBeforeBitstreamDload function
+Authentication Done
+PCAP:StatusReg = 0x40000A30
+PCAP:device ready
+PCAP:Clear done
+Level Shifter Value = 0xA
+Devcfg Status register = 0x40000A30
+PCAP:Fabric is Initialized done
+PCAP register dump:
+PCAP CTRL 0xF8007000: 0x4C00E07F
+PCAP LOCK 0xF8007004: 0x0000001A
+PCAP CONFIG 0xF8007008: 0x00000508
+PCAP ISR 0xF800700C: 0x0802000B
+PCAP IMR 0xF8007010: 0xFFFFFFFF
+PCAP STATUS 0xF8007014: 0x50000F30
+PCAP DMA SRC ADDR 0xF8007018: 0x00100001
+PCAP DMA DEST ADDR 0xF800701C: 0xFFFFFFFF
+PCAP DMA SRC LEN 0xF8007020: 0x0007F2E8
+PCAP DMA DEST LEN 0xF8007024: 0x0007F2E8
+PCAP ROM SHADOW CTRL 0xF8007028: 0xFFFFFFFF
+PCAP MBOOT 0xF800702C: 0x0000C000
+PCAP SW ID 0xF8007030: 0x00000000
+PCAP UNLOCK 0xF8007034: 0x757BDF0D
+PCAP MCTRL 0xF8007080: 0x3C800100
+
+
+DMA Done !
+
+
+FPGA Done !
+
+In FsblHookAfterBitstreamDload function
+Partition Number: 2
+Header Dump
+Image Word Len: 0x000224F7
+Data Word Len: 0x000224F7
+Partition Word Len:0x000226B0
+Load Addr: 0x04000000
+Exec Addr: 0x04000000
+Partition Start: 0x00087C20
+Partition Attr: 0x00008010
+Partition Checksum Offset: 0x00000000
+Section Count: 0x00000001
+Checksum: 0xF7E5EFB0
+Application
+RSA Signed
+Authentication Done
+Handoff Address: 0x04000000
+In FsblHookBeforeHandoff function
+SUCCESSFUL_HANDOFF
+FSBL Status = 0x1
+
+
+U-Boot 2016.07-gdb5d44e-dirty (Apr 26 2020 - 13:27:15 +0800)
+
+Model: Zynq MicroZED Board
+Board: Xilinx Zynq
+DRAM:
+dram_init: sys_sdram_size = 0x10000000
+dram_init: sys_sdram_size = 256 MB
+dram_init: gd->ram_size = 0xf000000
+ECC disabled 240 MiB
+NAND:  256 MiB
+MMC:   sdhci@e0100000: 0
+Invalid bus 0 (err=-1)
+*** Warning - spi_flash_probe() failed, using default environment
+
+In:    serial@e0000000
+Out:   serial@e0000000
+Err:   serial@e0000000
+Model: Zynq MicroZED Board
+Board: Xilinx Zynq
+board_late_init: bootargs: mem=240M console=ttyPS0,115200 ramdisk_size=33554432 root=/dev/ram rw earlyprintk
+--- nand boot sd ---
+
+reading miner.btm.sig
+FAT: Misaligned buffer address (0ef9b9dc)
+reading miner.btm
+FAT: Misaligned buffer address (0ef977ac)
+Checksum algorithm: sha256
+
+MINER BTM rsa verify success!!!!!
+
+Net:   --- phy_broadcom_init
+ZYNQ GEM: e000b000, phyaddr 0, interface gmii
+--- zynq_gem_probe
+--- mdio_register
+--- mdio_register 1
+--- mdio_register 2
+--- mdio_register 3
+--- zynq_phy_init: interface = 1
+--- zynq_phy_init
+ 0000000000
+PHY is not detected
+GEM PHY init failed
+No ethernet found.
+Hit any key to stop autoboot:  0
+Copying Linux from SD to RAM...
+reading uEnv.txt
+144 bytes read in 10 ms (13.7 KiB/s)
+Loaded environment from uEnv.txt
+Importing environment from SD ...
+Running uenvcmd ...
+Loading second stage U-Boot from SD...
+reading u-boot.bin
+2097152 bytes read in 398 ms (5 MiB/s)
+## Starting application at 0x04000000 ...
+
+
+U-Boot 2016.07-Xilinkl7-dirty (Dec 10 2018 - 16:28:51 +0800)
+
+Model: Zynq MicroZED Board
+Board: Xilinx Zynq
+DRAM:
+dram_init: sys_sdram_size = 0x10000000
+dram_init: sys_sdram_size = 256 MB
+dram_init: gd->ram_size = 0x0f000000
+ECC disabled 240 MiB
+NAND:  256 MiB
+MMC:   sdhci@e0100000: 0
+Invalid bus 0 (err=-1)
+*** Warning - spi_flash_probe() failed, using default environment
+
+In:    serial@e0000000
+Out:   serial@e0000000
+Err:   serial@e0000000
+Model: Zynq MicroZED Board
+Board: Xilinx Zynq
+board_late_init: bootargs: mem=240M console=ttyPS0,115200 ramdisk_size=33554432 root=/dev/ram rw earlyprintk
+
+--- boot gpio value = 0x000fff38
+--- nand boot sd ---
+
+Net:   --- phy_broadcom_init
+ZYNQ GEM: e000b000, phyaddr 0, interface mii
+--- zynq_gem_probe
+--- mdio_register
+--- mdio_register 1
+--- mdio_register 2
+--- mdio_register 3
+--- zynq_phy_init: interface = 0
+--- zynq_phy_init
+ 0000000000
+PHY is not detected
+GEM PHY init failed
+No ethernet found.
+Hit any key to stop autoboot:  2  1  0
+Copying Linux from SD to RAM...
+reading uEnz.txt
+** Unable to read file uEnz.txt **
+Copying Linux from SD to RAM...
+reading uImage
+3878760 bytes read in 220 ms (16.8 MiB/s)
+reading devicetree.dtb
+8014 bytes read in 18 ms (434.6 KiB/s)
+reading uramdisk.image.gz
+4968026 bytes read in 278 ms (17 MiB/s)
+## Booting kernel from Legacy Image at 02000000 ...
+   Image Name:   Linux-6.16.7-s19pro
+   Image Type:   ARM Linux Kernel Image (uncompressed)
+   Data Size:    3878696 Bytes = 3.7 MiB
+   Load Address: 00008000
+   Entry Point:  00008000
+   Verifying Checksum ... OK
+## Loading init Ramdisk from Legacy Image at 04000000 ...
+   Image Name:
+   Image Type:   ARM Linux RAMDisk Image (uncompressed)
+   Data Size:    4967962 Bytes = 4.7 MiB
+   Load Address: 00000000
+   Entry Point:  00000000
+   Verifying Checksum ... OK
+## Flattened Device Tree blob at 03000000
+   Booting using the fdt blob at 0x3000000
+   Loading Kernel Image ... OK
+   Loading Ramdisk to 0d643000, end 0daffe1a ... OK
+   Loading Device Tree to 0d63e000, end 0d642f4d ... OK
+
+Starting kernel ...
+
+Booting Linux on physical CPU 0x0
+Linux version 6.16.7-s19pro (danielsokil@pop-os) (arm-buildroot-linux-gnueabihf-gcc.br_real (Buildroot 2025.08-346-gdd84d05843) 14.3.0, GNU ld (GNU Binutils) 2.43.1) #1 SMP Sat Sep 27 21:29:57 EDT 2025
+CPU: ARMv7 Processor [413fc090] revision 0 (ARMv7), cr=18c5387d
+CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+OF: fdt: Machine model: Xilinx Zynq
+Memory policy: Data cache writealloc
+Zone ranges:
+  Normal   [mem 0x0000000000000000-0x000000000effffff]
+Movable zone start for each node
+Early memory node ranges
+  node   0: [mem 0x0000000000000000-0x000000000effffff]
+Initmem setup node 0 [mem 0x0000000000000000-0x000000000effffff]
+OF: reserved mem: Reserved memory: No reserved-memory node in the DT
+percpu: Embedded 9 pages/cpu s13836 r0 d23028 u36864
+Kernel command line: mem=240M console=ttyPS0,115200 ramdisk_size=33554432 root=/dev/ram rw earlyprintk
+Unknown kernel command line parameters "earlyprintk ramdisk_size=33554432", will be passed to user space.
+printk: log buffer data + meta data: 131072 + 409600 = 540672 bytes
+Dentry cache hash table entries: 32768 (order: 5, 131072 bytes, linear)
+Inode-cache hash table entries: 16384 (order: 4, 65536 bytes, linear)
+Built 1 zonelists, mobility grouping on.  Total pages: 61440
+mem auto-init: stack:all(zero), heap alloc:off, heap free:off
+SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=2, Nodes=1
+rcu: Hierarchical RCU implementation.
+rcu: RCU calculated value of scheduler-enlistment delay is 10 jiffies.
+NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16
+ps7-slcr mapped to (ptrval)
+L2C: platform modifies aux control register: 0x72360000 -> 0x72760000
+L2C: DT/platform modifies aux control register: 0x72360000 -> 0x72760000
+L2C-310 enabling early BRESP for Cortex-A9
+L2C-310 full line of zeros enabled for Cortex-A9
+L2C-310 ID prefetch enabled, offset 1 lines
+L2C-310 dynamic clock gating enabled, standby mode enabled
+L2C-310 cache controller enabled, 8 ways, 512 kB
+L2C-310: CACHE_ID 0x410000c8, AUX_CTRL 0x76760001
+rcu: srcu_init: Setting srcu_struct sizes based on contention.
+zynq_clock_init: clkc starts at (ptrval)
+Zynq clock init
+sched_clock: 64 bits at 167MHz, resolution 6ns, wraps every 4398046511103ns
+clocksource: arm_global_timer: mask: 0xffffffffffffffff max_cycles: 0x26703d7dd8, max_idle_ns: 440795208065 ns
+Switching to timer-based delay loop, resolution 6ns
+Console: colour dummy device 80x30
+Calibrating delay loop (skipped), value calculated using timer frequency.. 333.33 BogoMIPS (lpj=1666666)
+CPU: Testing write buffer coherency: ok
+CPU0: Spectre v2: using BPIALL workaround
+pid_max: default: 32768 minimum: 301
+Mount-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+CPU0: thread -1, cpu 0, socket 0, mpidr 80000000
+cacheinfo: Unable to detect cache hierarchy for CPU 0
+Setting up static identity map for 0x100000 - 0x100060
+rcu: Hierarchical SRCU implementation.
+rcu: 	Max phase no-delay instances is 1000.
+smp: Bringing up secondary CPUs ...
+CPU1: thread -1, cpu 1, socket 0, mpidr 80000001
+CPU1: Spectre v2: using BPIALL workaround
+smp: Brought up 1 node, 2 CPUs
+SMP: Total of 2 processors activated (666.66 BogoMIPS).
+CPU: All CPU(s) started in SVC mode.
+Memory: 227088K/245760K available (6144K kernel code, 550K rwdata, 1024K rodata, 1024K init, 221K bss, 17604K reserved, 0K cma-reserved)
+devtmpfs: initialized
+VFP support v0.3: implementor 41 architecture 3 part 30 variant 9 rev 4
+clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+posixtimers hash table entries: 1024 (order: 1, 8192 bytes, linear)
+futex hash table entries: 512 (32768 bytes on 1 NUMA nodes, total 32 KiB, linear).
+pinctrl core: initialized pinctrl subsystem
+NET: Registered PF_NETLINK/PF_ROUTE protocol family
+DMA: preallocated 256 KiB pool for atomic coherent allocations
+e0000000.serial: ttyPS0 at MMIO 0xe0000000 (irq = 26, base_baud = 6249999) is a xuartps
+printk: legacy console [ttyPS0] enabled
+usbcore: registered new interface driver usbfs
+usbcore: registered new interface driver hub
+usbcore: registered new device driver usb
+pps_core: LinuxPPS API ver. 1 registered
+pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+PTP clock support registered
+FPGA manager framework
+clocksource: Switched to clocksource arm_global_timer
+NET: Registered PF_INET protocol family
+IP idents hash table entries: 4096 (order: 3, 32768 bytes, linear)
+tcp_listen_portaddr_hash hash table entries: 512 (order: 0, 4096 bytes, linear)
+Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+TCP established hash table entries: 2048 (order: 1, 8192 bytes, linear)
+TCP bind hash table entries: 2048 (order: 3, 32768 bytes, linear)
+TCP: Hash tables configured (established 2048 bind 2048)
+UDP hash table entries: 256 (order: 1, 14336 bytes, linear)
+UDP-Lite hash table entries: 256 (order: 1, 14336 bytes, linear)
+NET: Registered PF_UNIX/PF_LOCAL protocol family
+workingset: timestamp_bits=30 max_order=16 bucket_order=0
+Unpacking initramfs...
+io scheduler mq-deadline registered
+io scheduler kyber registered
+io scheduler bfq registered
+macb e000b000.ethernet eth0: Cadence GEM rev 0x00020118 at 0xe000b000 irq 28 (00:0a:35:00:00:00)
+i2c_dev: i2c /dev entries driver
+cdns-i2c e0005000.ps7_i2c: can't get pinctrl, bus recovery not supported
+cdns-i2c e0005000.ps7_i2c: 100 kHz mmio e0005000 irq 29
+sdhci: Secure Digital Host Controller Interface driver
+sdhci: Copyright(c) Pierre Ossman
+sdhci-pltfm: SDHCI platform and OF driver helper
+clocksource: ttc_clocksource: mask: 0xffff max_cycles: 0xffff, max_idle_ns: 537538477 ns
+ps7-ttc #0 at (ptrval), irq=30
+usbcore: registered new interface driver usbhid
+usbhid: USB HID core driver
+zynq_fpga_manager f8007000.ps7-dev-cfg: unable to get zynq-slcr regmap
+NET: Registered PF_INET6 protocol family
+Segment Routing with IPv6
+In-situ OAM (IOAM) with IPv6
+sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+NET: Registered PF_PACKET protocol family
+zynq_pm_ioremap: no compatible node found for 'xlnx,zynq-ddrc-a05'
+zynq_pm_late_init: Unable to map DDRC IO memory.
+ThumbEE CPU extension supported.
+Registering SWP/SWPB emulation handler
+clk: Disabling unused clocks
+mmc0: SDHCI controller on e0100000.ps7-sdio [e0100000.ps7-sdio] using ADMA
+mmc0: new high speed SDHC card at address 0001
+mmcblk0: mmc0:0001 EITSD 3.75 GiB
+ mmcblk0: p1
+Freeing initrd memory: 4852K
+Freeing unused kernel image (initmem) memory: 1024K
+Run /init as init process
+
+init started: BusyBox v1.37.0 (2025-09-27 21:14:17 EDT)
+Starting S19 Pro initialization...
+macb e000b000.ethernet eth0: PHY [e000b000.ethernet-ffffffff:00] driver [Generic PHY] (irq=POLL)
+macb e000b000.ethernet eth0: configuring for phy/gmii link mode
+udhcpc: started, v1.37.0
+udhcpc: broadcasting discover
+macb e000b000.ethernet eth0: unable to generate target frequency: 25000000 Hz
+macb e000b000.ethernet eth0: Link is Up - 100Mbps/Full - flow control off
+udhcpc: broadcasting discover
+udhcpc: broadcasting select for 192.168.0.174, server 192.168.0.1
+udhcpc: lease of 192.168.0.174 obtained from 192.168.0.1, lease time 7200
+deleting routers
+adding dns 192.168.0.1
+FPGA device not found - bitstream may not be loaded
+S19 Pro initialization complete
+
+
+HashSource S19 Pro Custom Firmware
+
+s19pro login: miner
+Password:
+Login incorrect
+login[76]: invalid password for 'UNKNOWN' on 'ttyPS0'
+
+s19pro login: root
+Password:
+Login incorrect
+login[76]: invalid password for 'root' on 'ttyPS0'
+
+s19pro login:  

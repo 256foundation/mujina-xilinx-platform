@@ -1,0 +1,227 @@
+Xilinx First Stage Boot Loader
+
+Release 2017.1	Apr 11 2020-21:03:30
+Devcfg driver initialized
+Silicon Version 3.1
+Boot mode is NAND
+InitNand: Geometry = 0x8
+Nand driver initialized
+
+NAND Init Done
+Flash Base Address: 0xE1000000
+Reboot status register: 0x60400000
+Multiboot Register: 0x0000C000
+Image Start Address: 0x00000000
+Partition Header Offset:0x00000C80
+Partition Count: 3
+EfusePS status bits : 0xC0013C82
+
+EfusePS status bits : Write protect enabled
+
+EfusePS status bits : RSA authentication of fsbl enabled
+
+EfusePS status bits : 128k CRC check on ROM enabled
+
+EfusePS status bits : DFT JTAG is enabled
+
+EfusePS status bits : DFT mode is enabled
+
+Read RSA Key Hash:
+
+3545B6DE1FF44EE4295270CC6D0FF730F861DB9CE32F70F2980619FAF0F34DC1
+
+fsbl read PS efuse success
+RSA is already enabled for Chip
+SetPpk
+Partition Number: 1
+Header Dump
+Image Word Len: 0x0007F2E8
+Data Word Len: 0x0007F2E8
+Partition Word Len:0x0007F4A0
+Load Addr: 0x00000000
+Exec Addr: 0x00000000
+Partition Start: 0x00008780
+Partition Attr: 0x00008020
+Partition Checksum Offset: 0x00000000
+Section Count: 0x00000001
+Checksum: 0xFFDEA12E
+Bitstream
+RSA Signed
+In FsblHookBeforeBitstreamDload function
+Authentication Done
+PCAP:StatusReg = 0x40000A30
+PCAP:device ready
+PCAP:Clear done
+Level Shifter Value = 0xA
+Devcfg Status register = 0x40000A30
+PCAP:Fabric is Initialized done
+PCAP register dump:
+PCAP CTRL 0xF8007000: 0x4C00E07F
+PCAP LOCK 0xF8007004: 0x0000001A
+PCAP CONFIG 0xF8007008: 0x00000508
+PCAP ISR 0xF800700C: 0x0802000B
+PCAP IMR 0xF8007010: 0xFFFFFFFF
+PCAP STATUS 0xF8007014: 0x50000F30
+PCAP DMA SRC ADDR 0xF8007018: 0x00100001
+PCAP DMA DEST ADDR 0xF800701C: 0xFFFFFFFF
+PCAP DMA SRC LEN 0xF8007020: 0x0007F2E8
+PCAP DMA DEST LEN 0xF8007024: 0x0007F2E8
+PCAP ROM SHADOW CTRL 0xF8007028: 0xFFFFFFFF
+PCAP MBOOT 0xF800702C: 0x0000C000
+PCAP SW ID 0xF8007030: 0x00000000
+PCAP UNLOCK 0xF8007034: 0x757BDF0D
+PCAP MCTRL 0xF8007080: 0x3C800100
+
+
+DMA Done !
+
+
+FPGA Done !
+
+In FsblHookAfterBitstreamDload function
+Partition Number: 2
+Header Dump
+Image Word Len: 0x000224F7
+Data Word Len: 0x000224F7
+Partition Word Len:0x000226B0
+Load Addr: 0x04000000
+Exec Addr: 0x04000000
+Partition Start: 0x00087C20
+Partition Attr: 0x00008010
+Partition Checksum Offset: 0x00000000
+Section Count: 0x00000001
+Checksum: 0xF7E5EFB0
+Application
+RSA Signed
+Authentication Done
+Handoff Address: 0x04000000
+In FsblHookBeforeHandoff function
+SUCCESSFUL_HANDOFF
+FSBL Status = 0x1
+
+
+U-Boot 2016.07-gdb5d44e-dirty (Apr 26 2020 - 13:27:15 +0800)
+
+Model: Zynq MicroZED Board
+Board: Xilinx Zynq
+DRAM:
+dram_init: sys_sdram_size = 0x10000000
+dram_init: sys_sdram_size = 256 MB
+dram_init: gd->ram_size = 0xf000000
+ECC disabled 240 MiB
+NAND:  256 MiB
+MMC:   sdhci@e0100000: 0
+Invalid bus 0 (err=-1)
+*** Warning - spi_flash_probe() failed, using default environment
+
+In:    serial@e0000000
+Out:   serial@e0000000
+Err:   serial@e0000000
+Model: Zynq MicroZED Board
+Board: Xilinx Zynq
+board_late_init: bootargs: mem=240M console=ttyPS0,115200 ramdisk_size=33554432 root=/dev/ram rw earlyprintk
+--- nand boot sd ---
+
+reading miner.btm.sig
+FAT: Misaligned buffer address (0ef9b9dc)
+reading miner.btm
+FAT: Misaligned buffer address (0ef977ac)
+Checksum algorithm: sha256
+
+MINER BTM rsa verify success!!!!!
+
+Net:   --- phy_broadcom_init
+ZYNQ GEM: e000b000, phyaddr 0, interface gmii
+--- zynq_gem_probe
+--- mdio_register
+--- mdio_register 1
+--- mdio_register 2
+--- mdio_register 3
+--- zynq_phy_init: interface = 1
+--- zynq_phy_init
+ 0000000000
+PHY is not detected
+GEM PHY init failed
+No ethernet found.
+Hit any key to stop autoboot:  0
+Copying Linux from SD to RAM...
+reading uEnv.txt
+144 bytes read in 10 ms (13.7 KiB/s)
+Loaded environment from uEnv.txt
+Importing environment from SD ...
+Running uenvcmd ...
+Loading second stage U-Boot from SD...
+reading u-boot.bin
+2097152 bytes read in 398 ms (5 MiB/s)
+## Starting application at 0x04000000 ...
+
+
+U-Boot 2016.07-Xilinkl7-dirty (Dec 10 2018 - 16:28:51 +0800)
+
+Model: Zynq MicroZED Board
+Board: Xilinx Zynq
+DRAM:
+dram_init: sys_sdram_size = 0x10000000
+dram_init: sys_sdram_size = 256 MB
+dram_init: gd->ram_size = 0x0f000000
+ECC disabled 240 MiB
+NAND:  256 MiB
+MMC:   sdhci@e0100000: 0
+Invalid bus 0 (err=-1)
+*** Warning - spi_flash_probe() failed, using default environment
+
+In:    serial@e0000000
+Out:   serial@e0000000
+Err:   serial@e0000000
+Model: Zynq MicroZED Board
+Board: Xilinx Zynq
+board_late_init: bootargs: mem=240M console=ttyPS0,115200 ramdisk_size=33554432 root=/dev/ram rw earlyprintk
+
+--- boot gpio value = 0x000fff38
+--- nand boot sd ---
+
+Net:   --- phy_broadcom_init
+ZYNQ GEM: e000b000, phyaddr 0, interface mii
+--- zynq_gem_probe
+--- mdio_register
+--- mdio_register 1
+--- mdio_register 2
+--- mdio_register 3
+--- zynq_phy_init: interface = 0
+--- zynq_phy_init
+ 0000000000
+PHY is not detected
+GEM PHY init failed
+No ethernet found.
+Hit any key to stop autoboot:  2  1  0
+Copying Linux from SD to RAM...
+reading uEnz.txt
+** Unable to read file uEnz.txt **
+Copying Linux from SD to RAM...
+reading uImage
+10977856 bytes read in 592 ms (17.7 MiB/s)
+reading devicetree.dtb
+7932 bytes read in 19 ms (407.2 KiB/s)
+reading uramdisk.image.gz
+15006926 bytes read in 809 ms (17.7 MiB/s)
+## Booting kernel from Legacy Image at 02000000 ...
+   Image Name:   Linux-6.16.7-s19pro
+   Image Type:   ARM Linux Kernel Image (uncompressed)
+   Data Size:    10977792 Bytes = 10.5 MiB
+   Load Address: 00008000
+   Entry Point:  00008000
+   Verifying Checksum ... OK
+## Loading init Ramdisk from Legacy Image at 04000000 ...
+   Image Name:
+   Image Type:   ARM Linux RAMDisk Image (uncompressed)
+   Data Size:    15006862 Bytes = 14.3 MiB
+   Load Address: 00000000
+   Entry Point:  00000000
+   Verifying Checksum ... OK
+## Flattened Device Tree blob at 03000000
+   Booting using the fdt blob at 0x3000000
+   Loading Kernel Image ... OK
+   Loading Ramdisk to 0ccb0000, end 0daffc8e ... OK
+   Loading Device Tree to 0ccab000, end 0ccafefb ... OK
+
+Starting kernel ...

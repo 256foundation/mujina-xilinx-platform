@@ -1,0 +1,60 @@
+#!/bin/sh
+#
+# Load stock Bitmain kernel modules for FPGA access
+# These modules are from stock firmware kernel 4.6.0-xilinx-g03c746f7
+#
+
+case "$1" in
+    start)
+        # Check if debug modules are already loaded
+        if [ -f /tmp/modules_loaded_debug ]; then
+            echo "FPGA kernel modules already loaded (debug version)"
+            exit 0
+        fi
+
+        echo -n "Loading FPGA kernel modules: "
+
+        # Load bitmain_axi.ko - FPGA register access driver
+        if [ -f /lib/modules/bitmain_axi.ko ]; then
+            insmod /lib/modules/bitmain_axi.ko
+            echo -n "bitmain_axi "
+        fi
+
+        # Load fpga_mem_driver.ko - FPGA memory mapping driver
+        # Determine memory offset based on total system RAM
+        if [ -f /lib/modules/fpga_mem_driver.ko ]; then
+            memory_size=$(awk '/MemTotal/{total=$2}END{print total}' /proc/meminfo)
+
+            if [ $memory_size -gt 1000000 ]; then
+                # >1GB RAM
+                OFFSET=0x3F000000
+            elif [ $memory_size -gt 400000 ]; then
+                # 400MB-1GB RAM
+                OFFSET=0x1F000000
+            else
+                # <400MB RAM (unit has 240MB)
+                OFFSET=0x0F000000
+            fi
+
+            insmod /lib/modules/fpga_mem_driver.ko fpga_mem_offset_addr=$OFFSET
+            echo -n "fpga_mem_driver (offset=$OFFSET) "
+        fi
+
+        echo "OK"
+        ;;
+    stop)
+        echo -n "Unloading FPGA kernel modules: "
+        rmmod fpga_mem_driver 2>/dev/null
+        rmmod bitmain_axi 2>/dev/null
+        echo "OK"
+        ;;
+    restart|reload)
+        "$0" stop
+        "$0" start
+        ;;
+    *)
+        echo "Usage: $0 {start|stop|restart}"
+        exit 1
+esac
+
+exit 0

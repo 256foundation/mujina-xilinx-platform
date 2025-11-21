@@ -1,0 +1,5 @@
+# shellcheck disable=SC2148
+# Dropbear SSH server configuration
+# Allow root login with password authentication
+# No flags needed - default allows root password login
+DROPBEAR_ARGS=""

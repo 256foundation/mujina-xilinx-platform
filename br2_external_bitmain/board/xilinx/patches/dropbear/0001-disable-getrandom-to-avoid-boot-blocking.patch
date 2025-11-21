@@ -1,0 +1,76 @@
+--- a/src/dbrandom.c	2025-05-07 10:30:00.000000000 -0400
++++ b/src/dbrandom.c	2025-10-04 20:50:37.640177049 -0400
+@@ -162,61 +162,6 @@
+ #endif
+ 
+ 
+-#ifdef HAVE_GETRANDOM
+-/* Reads entropy seed with getrandom(). 
+- * May block if the kernel isn't ready.
+- * Return DROPBEAR_SUCCESS or DROPBEAR_FAILURE */
+-static int process_getrandom(hash_state *hs) {
+-	char buf[INIT_SEED_SIZE];
+-	ssize_t ret;
+-
+-	/* First try non-blocking so that we can warn about waiting */
+-	ret = getrandom(buf, sizeof(buf), GRND_NONBLOCK);
+-	if (ret == -1) {
+-		if (errno == ENOSYS) {
+-			/* Old kernel */
+-			return DROPBEAR_FAILURE;
+-		}
+-		/* Other errors fall through to blocking getrandom() */
+-		TRACE(("first getrandom() failed: %d %s", errno, strerror(errno)))
+-		if (errno == EAGAIN) {
+-			dropbear_log(LOG_WARNING, "Waiting for kernel randomness to be initialised...");
+-		}
+-	}
+-
+-	/* Wait blocking if needed. Loop in case we get EINTR */
+-	while (ret != sizeof(buf)) {
+-		ret = getrandom(buf, sizeof(buf), 0);
+-
+-		if (ret == sizeof(buf)) {
+-			/* Success */
+-			break;
+-		}
+-		if (ret == -1 && errno == EINTR) {
+-			/* Try again. */
+-			continue;
+-		}
+-		if (ret >= 0) {
+-			TRACE(("Short read %zd from getrandom() shouldn't happen", ret))
+-			/* Try again? */
+-			continue;
+-		}
+-
+-		/* Unexpected problem, fall back to /dev/urandom */
+-		TRACE(("2nd getrandom() failed: %d %s", errno, strerror(errno)))
+-		break;
+-	}
+-
+-	if (ret == sizeof(buf)) {
+-		/* Success, stir in the entropy */
+-		sha256_process(hs, (void*)buf, sizeof(buf));
+-		return DROPBEAR_SUCCESS;
+-	}
+-
+-	return DROPBEAR_FAILURE;
+-
+-}
+-#endif /* HAVE_GETRANDOM */
+ 
+ /* Initialise the prng from /dev/urandom or prngd. This function can
+  * be called multiple times */
+@@ -240,11 +185,6 @@
+ 	/* existing state */
+ 	sha256_process(&hs, (void*)hashpool, sizeof(hashpool));
+ 
+-#ifdef HAVE_GETRANDOM
+-	if (process_getrandom(&hs) == DROPBEAR_SUCCESS) {
+-		urandom_seeded = 1;
+-	}
+-#endif
+ 
+ 	if (!urandom_seeded) {
+ #if DROPBEAR_USE_PRNGD

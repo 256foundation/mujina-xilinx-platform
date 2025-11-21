@@ -1,0 +1,45 @@
+config BR2_PACKAGE_MUJINA
+	bool "mujina"
+	help
+	  Mujina - Bitcoin ASIC miner software
+
+	  ASIC communication and mining protocol implementation for
+	  Bitmain miners.
+
+	  https://github.com/256foundation/mujina
+
+if BR2_PACKAGE_MUJINA
+
+choice
+	prompt "Mujina source"
+	default BR2_PACKAGE_MUJINA_GITHUB_RELEASE
+	help
+	  Select where to obtain mujina binary
+
+config BR2_PACKAGE_MUJINA_GITHUB_RELEASE
+	bool "GitHub release (pre-built)"
+	help
+	  Download pre-built binary from GitHub releases
+
+config BR2_PACKAGE_MUJINA_LOCAL_BUILD
+	bool "Local build (from source)"
+	help
+	  Build from local mujina repository
+
+endchoice
+
+config BR2_PACKAGE_MUJINA_VERSION
+	string "GitHub release version"
+	depends on BR2_PACKAGE_MUJINA_GITHUB_RELEASE
+	default "latest"
+	help
+	  GitHub release tag (e.g., "v1.0.0") or "latest"
+
+config BR2_PACKAGE_MUJINA_LOCAL_PATH
+	string "Local mujina repository path"
+	depends on BR2_PACKAGE_MUJINA_LOCAL_BUILD
+	default "$(BR2_EXTERNAL_XILINX_BITMAIN_PATH)/../mujina"
+	help
+	  Path to mujina repository for local build
+
+endif

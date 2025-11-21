@@ -1,0 +1,37 @@
+/dts-v1/;
+
+/*
+ * Ramdisk FIT Image Template
+ *
+ * NOTE: This FIT image intentionally does NOT contain a hash node.
+ * U-Boot verifies the ramdisk SHA256 against mtd3 bytes 1024-1279,
+ * which is updated by install_ramdisk_to_nand.sh during installation.
+ * See CLAUDE.md for details on the signature update method.
+ */
+
+/ {
+	description = "Ramdisk";
+	#address-cells = <1>;
+
+	images {
+		ramdisk {
+			description = "Ramdisk";
+			data = /incbin/("./rootfs.ext2.gz");
+			type = "ramdisk";
+			arch = "arm";
+			os = "linux";
+			compression = "gzip";
+			load = <0>;
+			entry = <0>;
+		};
+	};
+
+	configurations {
+		default = "def-conf";
+
+		def-conf {
+			description = "Default configuration";
+			ramdisk = "ramdisk";
+		};
+	};
+};

@@ -1,0 +1,48 @@
+Xilinx First Stage Boot Loader
+
+Release 2018.3	Dec 13 2021-22:47:12
+Devcfg driver initialized
+Silicon Version 3.1
+Boot mode is NAND
+InitNand: Geometry = 0x8
+Nand driver initialized
+
+NAND Init Done
+Flash Base Address: 0xE1000000
+EfusePS status bits : 0xC001308F
+
+EfusePS status bits : 128k CRC check on ROM disabled
+
+EfusePS status bits : DFT JTAG is enabled
+
+EfusePS status bits : DFT mode is enabled
+
+EfusePS status bits : RSA authentication of fsbl disabled
+
+EfusePS status bits : Write protect enabled
+
+
+eFUSE operations exit status: 00000000
+Reboot status register: 0x60400000
+Multiboot Register: 0x0000C000
+Image Start Address: 0x00000000
+Partition Header Offset:0x00000C80
+Partition Count: 3
+Partition Number: 1
+Header Dump
+Image Word Len: 0x0007F2E8
+Data Word Len: 0x0007F2E8
+Partition Word Len:0x0007F4A0
+Load Addr: 0x00000000
+Exec Addr: 0x00000000
+Partition Start: 0x00008780
+Partition Attr: 0x00008020
+Partition Checksum Offset: 0x00000000
+Section Count: 0x00000001
+Checksum: 0xFFDEA12E
+Bitstream
+RSA Signed
+In FsblHookBeforeBitstreamDload function
+Partition SPK Signature Authentication failed
+AUTHENTICATION_FAIL
+FSBL Status = 0xA00C

@@ -1,0 +1,35 @@
+#!/bin/sh
+
+echo "Starting Xilinx miner initialization..."
+
+# Mount essential filesystems
+mount -t proc proc /proc
+mount -t sysfs sysfs /sys
+mount -t tmpfs tmpfs /tmp
+
+# Create /dev directory structure (devtmpfs already mounted by kernel)
+mkdir -p /dev/pts /dev/shm
+mount -t devpts devpts /dev/pts
+mount -t tmpfs tmpfs /dev/shm
+
+# Load FPGA bitstream if not already loaded
+if [ ! -c /dev/xdevcfg ]; then
+    echo "FPGA device not found - bitstream may not be loaded"
+fi
+
+# Run all init scripts
+for script in /etc/init.d/S??*; do
+    [ -x "$script" ] || continue
+    case "$script" in
+        *.sh)
+            # Source shell scripts
+            . "$script"
+            ;;
+        *)
+            # Execute other scripts
+            "$script" start
+            ;;
+    esac
+done
+
+echo "Xilinx miner initialization complete"
