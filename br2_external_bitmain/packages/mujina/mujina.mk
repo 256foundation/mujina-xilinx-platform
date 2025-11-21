@@ -9,6 +9,10 @@
 
 MUJINA_VERSION = $(call qstrip,$(BR2_PACKAGE_MUJINA_VERSION))
 
+ifeq ($(BR2_PACKAGE_MUJINA_LOCAL_BUILD),y)
+MUJINA_DEPENDENCIES = host-pkgconf host-rustc
+endif
+
 ifeq ($(BR2_PACKAGE_MUJINA_GITHUB_RELEASE),y)
 # GitHub release download
 ifeq ($(MUJINA_VERSION),latest)
@@ -41,6 +45,14 @@ define MUJINA_BUILD_CMDS
 	@echo 'linker = "$(TARGET_CC)"' >> $(@D)/.cargo/config.toml
 	cd $(@D) && \
 		CARGO_TARGET_ARM_UNKNOWN_LINUX_GNUEABIHF_LINKER="$(TARGET_CC)" \
+		OPENSSL_DIR="$(STAGING_DIR)/usr" \
+		OPENSSL_LIB_DIR="$(STAGING_DIR)/usr/lib" \
+		OPENSSL_INCLUDE_DIR="$(STAGING_DIR)/usr/include" \
+		OPENSSL_NO_VENDOR=1 \
+		PKG_CONFIG="$(PKG_CONFIG_HOST_BINARY)" \
+		PKG_CONFIG_SYSROOT_DIR="$(STAGING_DIR)" \
+		PKG_CONFIG_LIBDIR="$(STAGING_DIR)/usr/lib/pkgconfig" \
+		PKG_CONFIG_ALLOW_CROSS=1 \
 		cargo build --release \
 			--target arm-unknown-linux-gnueabihf \
 			--target-dir $(@D)/target

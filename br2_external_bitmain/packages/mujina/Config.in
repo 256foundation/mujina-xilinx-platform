@@ -1,5 +1,9 @@
 config BR2_PACKAGE_MUJINA
 	bool "mujina"
+	select BR2_PACKAGE_OPENSSL
+	select BR2_PACKAGE_LIBOPENSSL
+	select BR2_PACKAGE_PKGCONF
+	select BR2_PACKAGE_EUDEV
 	help
 	  Mujina - Bitcoin ASIC miner software
 
