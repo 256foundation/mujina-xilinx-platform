@@ -312,6 +312,7 @@ U-Boot verifies ramdisk SHA256 against mtd3 signature partition:
 ## Contributing
 
 **Firmware Packaging**: Submit PRs to this repository
+
 **Mining Software**: Submit PRs to [mujina](https://github.com/256foundation/mujina) repository
 
 ### Repository Separation
